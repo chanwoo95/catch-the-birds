@@ -13,6 +13,8 @@ body {
 }
 
 .game__field {
+  position: relative;
+  border: 2px solid blue;
   margin: auto;
   width: 1000px;
   height: 400px;
@@ -40,4 +42,14 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.bird {
+  width: 60px;
+  height: 60px;
+  transition: all 0.2s;
+}
+
+.bird:hover {
+  transform: scale(1.12);
 }
