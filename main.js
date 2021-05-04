@@ -5,11 +5,36 @@ const target = document.querySelector('.target');
 const field = document.querySelector('.game__field');
 const fieldRect = field.getBoundingClientRect();
 
+const gameButton = document.querySelector('.game__button');
+const gameScore = document.querySelector('.game__score');
+const gameTime = document.querySelector('.game__time');
+
+
 const BIRD_COUNT = 5;
 const BIRD_SIZE = 80;
 
+let score = 0;
 
-document.addEventListener('mousemove', e => {
+addItem("bird", "img/bird.png", BIRD_COUNT);
+updateScore();
+
+
+function updateScore() {
+    gameScore.innerHTML = BIRD_COUNT - score;
+}
+
+gameButton.addEventListener('click', gameStart);
+
+function gameStart() {
+    console.log('start!');
+}
+
+
+document.addEventListener('mousemove',  event => {
+    mouseTarget(event)
+});
+
+function mouseTarget(e) {
     const x = e.clientX;
     const y = e.clientY;
 
@@ -17,7 +42,7 @@ document.addEventListener('mousemove', e => {
     horizontal.style.top = `${y}px`;
     target.style.left = `${x}px`;
     target.style.top = `${y}px`;
-})
+}
 
 function addItem(className, imgPath, count) {
     const x1 = 0;
@@ -46,5 +71,5 @@ function randomNum(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-    addItem('bird', 'img/bird.png', BIRD_COUNT);
+
 
