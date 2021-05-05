@@ -5,21 +5,26 @@ const target = document.querySelector('.target');
 const field = document.querySelector('.game__field');
 const fieldRect = field.getBoundingClientRect();
 
+const gameContainer = document.querySelector('.container');
 const gameButton = document.querySelector('.game__button');
 const gameScore = document.querySelector('.game__score');
 const gameTime = document.querySelector('.game__time');
 const gameBullet = document.querySelector('.game__bullet');
 
 
+
 const BIRD_COUNT = 5;
 const BULLET_COUNT = 3;
 const BIRD_SIZE = 80;
 
+
+let bullets = [];
 let score = 0;
 
 addItem("bird", "img/bird.png", BIRD_COUNT);
 addBullet('bullet', 'img/bullet.png', BULLET_COUNT);
 updateScore();
+
 
 
 
@@ -68,15 +73,23 @@ function addItem(className, imgPath, count) {
 function addBullet(className, imgPath, count) {
     for(let i = 0 ; i < count; i++) {
         const span = document.createElement('span');
-        const item = document.createElement('img');
-        item.setAttribute('class', className);
-        item.setAttribute('src', imgPath);
-
-        span.appendChild(item);
+        const bullet = document.createElement('img');
+        bullet.setAttribute('class', className);
+        bullet.setAttribute('src', imgPath);
+        
+        const newId = bullets.length + 1;
+        bullet.id = newId;
+        span.appendChild(bullet);
         gameBullet.appendChild(span);
+        const bulletObj = {
+            id: newId
+        }
+        bullets.push(bulletObj);
 
-
+        
     }
+
+   
 }
 
 function randomNum(min, max) {
