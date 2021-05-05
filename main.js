@@ -8,25 +8,23 @@ const fieldRect = field.getBoundingClientRect();
 const gameButton = document.querySelector('.game__button');
 const gameScore = document.querySelector('.game__score');
 const gameTime = document.querySelector('.game__time');
+const gameBullet = document.querySelector('.game__bullet');
 
 
 const BIRD_COUNT = 5;
+const BULLET_COUNT = 3;
 const BIRD_SIZE = 80;
 
 let score = 0;
 
 addItem("bird", "img/bird.png", BIRD_COUNT);
+addBullet('bullet', 'img/bullet.png', BULLET_COUNT);
 updateScore();
+
 
 
 function updateScore() {
     gameScore.innerHTML = BIRD_COUNT - score;
-}
-
-gameButton.addEventListener('click', gameStart);
-
-function gameStart() {
-    console.log('start!');
 }
 
 
@@ -64,6 +62,20 @@ function addItem(className, imgPath, count) {
         item.style.top = `${y}px`;
 
         field.appendChild(item);
+    }
+}
+
+function addBullet(className, imgPath, count) {
+    for(let i = 0 ; i < count; i++) {
+        const span = document.createElement('span');
+        const item = document.createElement('img');
+        item.setAttribute('class', className);
+        item.setAttribute('src', imgPath);
+
+        span.appendChild(item);
+        gameBullet.appendChild(span);
+
+
     }
 }
 

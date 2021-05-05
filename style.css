@@ -2,7 +2,6 @@ body {
   margin: 0;
   box-sizing: border-box;
   background-color: black;
-  cursor: none;
 }
 
 .container {
@@ -14,7 +13,6 @@ body {
 
 .game__field {
   position: relative;
-  border: 2px solid blue;
   margin: auto;
   width: 1000px;
   height: 400px;
@@ -59,9 +57,11 @@ body {
   height: 50px;
   font-size: 1.4rem;
   background-color: white;
+  cursor: pointer;
 }
 
 .game__menu {
+  z-index: 1;
   margin-top: 20px;
   margin-left: 20px;
   color: white;
@@ -91,6 +91,14 @@ body {
   text-align: center;
 }
 
-.convider {
+.divider {
   display: flex;
+}
+
+.game__bullet {
+  margin-top: 30px;
+}
+
+.bullet {
+  width: 50px;
 }
