@@ -1,3 +1,5 @@
+'use strict';
+
 const horizontal = document.querySelector('.horizontal');
 const vertical = document.querySelector('.vertical');
 const target = document.querySelector('.target');
@@ -11,7 +13,8 @@ const gameScore = document.querySelector('.game__score');
 const gameTime = document.querySelector('.game__time');
 const gameBullet = document.querySelector('.game__bullet');
 
-
+const bgSound = new Audio('sound/bg.mp3')
+// bgSound.play();
 
 const BIRD_COUNT = 5;
 const BULLET_COUNT = 3;
@@ -23,29 +26,31 @@ let score = 0;
 
 addItem("bird", "img/bird.png", BIRD_COUNT);
 addBullet('bullet', 'img/bullet.png', BULLET_COUNT);
-updateScore();
-
-
 
 
 function updateScore() {
     gameScore.innerHTML = BIRD_COUNT - score;
 }
 
+gameButton.addEventListener('click', () => {
+    startGame();
+})
 
-document.addEventListener('mousemove',  event => {
-    mouseTarget(event)
-});
+field.addEventListener('click', onFieldClick);
 
-function mouseTarget(e) {
-    const x = e.clientX;
-    const y = e.clientY;
-
-    vertical.style.left = `${x}px`;
-    horizontal.style.top = `${y}px`;
-    target.style.left = `${x}px`;
-    target.style.top = `${y}px`;
+function onFieldClick() {
+    const target = event.target;
+    if(target.matches('.bird')) {
+        target.remove();
+    }
 }
+
+function startGame() {
+    updateScore();
+}
+
+
+
 
 function addItem(className, imgPath, count) {
     const x1 = 0;
@@ -86,14 +91,31 @@ function addBullet(className, imgPath, count) {
         }
         bullets.push(bulletObj);
 
-        
     }
+    // gameContainer.addEventListener('click', () => {
+    //     // let pop = bullets.pop();
+    //     // bullets.removeChild(pop);
+    // })
 
    
 }
 
 function randomNum(min, max) {
     return Math.random() * (max - min) + min;
+}
+
+document.addEventListener("mousemove", (event) => {
+  mouseTarget(event);
+});
+
+function mouseTarget(e) {
+  const x = e.clientX;
+  const y = e.clientY;
+
+  vertical.style.left = `${x}px`;
+  horizontal.style.top = `${y}px`;
+  target.style.left = `${x}px`;
+  target.style.top = `${y}px`;
 }
 
 
