@@ -13,6 +13,10 @@ const gameScore = document.querySelector('.game__score');
 const gameTime = document.querySelector('.game__time');
 const gameBullet = document.querySelector('.game__bullet');
 
+const popup = document.querySelector('.popup');
+const popupButton = document.querySelector('.popup__button');
+const popupMessage = document.querySelector('.popup__message');
+
 const bgSound = new Audio('sound/bg.mp3')
 // bgSound.play();
 
@@ -42,14 +46,39 @@ function onFieldClick() {
     const target = event.target;
     if(target.matches('.bird')) {
         target.remove();
+        score++;
+        updateScore()
+    } 
+    if( score === BIRD_COUNT ) {
+        // finishGame();
     }
+}
+
+function initGame() {
+    showTimerAndScore();
 }
 
 function startGame() {
     updateScore();
+    
+
+    // showScoreAndTimer();
+}
+
+function stopGame() {
+    showPopupWithText('Retry?');
+}
+
+function showScoreAndTimer() {
+    gameScore.style.visibility = 'visibility';
+    gameTimer.style.visibility = 'visibility';
 }
 
 
+function showPopupWithText(text) {
+    popup.classList.remove('popup--hide');
+    popupMessage.innerHTML = text;
+}
 
 
 function addItem(className, imgPath, count) {
