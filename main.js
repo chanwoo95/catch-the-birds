@@ -10,7 +10,7 @@ const fieldRect = field.getBoundingClientRect();
 const gameContainer = document.querySelector('.container');
 const gameButton = document.querySelector('.game__button');
 const gameScore = document.querySelector('.game__score');
-const gameTime = document.querySelector('.game__time');
+const gameTimer = document.querySelector('.game__time');
 const gameBullet = document.querySelector('.game__bullet');
 
 const popup = document.querySelector('.popup');
@@ -27,9 +27,9 @@ const BIRD_SIZE = 80;
 
 let bullets = [];
 let score = 0;
+let started = false;
 
-addItem("bird", "img/bird.png", BIRD_COUNT);
-addBullet('bullet', 'img/bullet.png', BULLET_COUNT);
+
 
 
 function updateScore() {
@@ -37,10 +37,15 @@ function updateScore() {
 }
 
 gameButton.addEventListener('click', () => {
-    startGame();
+    if(!started) {
+        startGame();
+    } else {
+        stopGame();
+    }
 })
 
 field.addEventListener('click', onFieldClick);
+
 
 function onFieldClick() {
     const target = event.target;
@@ -54,24 +59,43 @@ function onFieldClick() {
     }
 }
 
+function finishGame(win) {
+    started = false;
+    showPopupWithText(win ? 'YOU WIN!!!' : 'YOU LOSE...')
+}
+
 function initGame() {
-    showTimerAndScore();
+    addItem("bird", "img/bird.png", BIRD_COUNT);
+    addBullet("bullet", "img/bullet.png", BULLET_COUNT);
 }
 
 function startGame() {
+    started = true;
+    initGame();
     updateScore();
-    
-
-    // showScoreAndTimer();
+    showScoreAndTimer();
+    showStopButton();
 }
 
 function stopGame() {
+    started= false;
     showPopupWithText('Retry?');
+    hideStopButton();
+}
+
+function showStopButton() {
+    const icon = document.querySelector('.fas');
+    icon.classList.remove('fa-play');
+    icon.classList.add('fa-stop');
+}
+
+function hideStopButton() {
+    gameButton.style.visibility = 'hidden';
 }
 
 function showScoreAndTimer() {
-    gameScore.style.visibility = 'visibility';
-    gameTimer.style.visibility = 'visibility';
+    gameScore.style.visibility = 'visible';
+    gameTimer.style.visibility = 'visible';
 }
 
 
