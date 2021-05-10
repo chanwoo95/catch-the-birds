@@ -23,8 +23,9 @@ const bgSound = new Audio('sound/bg.mp3')
 const BIRD_COUNT = 5;
 const BULLET_COUNT = 3;
 const BIRD_SIZE = 80;
+const GAME_SEC = 5;
 
-
+let timer = undefined;
 let bullets = [];
 let score = 0;
 let started = false;
@@ -52,16 +53,17 @@ function onFieldClick() {
     if(target.matches('.bird')) {
         target.remove();
         score++;
-        updateScore()
+        updateScore();
     } 
     if( score === BIRD_COUNT ) {
-        // finishGame();
+        finishGame(true);
     }
 }
 
 function finishGame(win) {
     started = false;
-    showPopupWithText(win ? 'YOU WIN!!!' : 'YOU LOSE...')
+    showPopupWithText(win ? 'YOU WIN!!!' : 'YOU LOSE...');
+    hideStopButton();
 }
 
 function initGame() {
@@ -75,12 +77,32 @@ function startGame() {
     updateScore();
     showScoreAndTimer();
     showStopButton();
+    startTimer();
 }
 
 function stopGame() {
     started= false;
     showPopupWithText('Retry?');
     hideStopButton();
+}
+
+function startTimer() {
+    let remainSec = GAME_SEC; //전역변수를 왜 지역변수에 할당해서 사용하는지?
+    timer = setInterval(() => {
+        if(remainSec <= 0) {
+            clearInterval(timer);
+            finishGame(false)
+            return;
+        }
+        updateTimer(--remainSec);
+    }, 1000)
+
+}
+
+function updateTimer(time) {
+    const minutes = Math.floor(time / 60)
+    const seconds = time % 60;
+    gameTimer.innerHTML = `${minutes}:${seconds}`;
 }
 
 function showStopButton() {
