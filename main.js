@@ -31,12 +31,6 @@ let score = 0;
 let started = false;
 
 
-
-
-function updateScore() {
-    gameScore.innerHTML = BIRD_COUNT - score;
-}
-
 gameButton.addEventListener('click', () => {
     if(!started) {
         startGame();
@@ -47,28 +41,41 @@ gameButton.addEventListener('click', () => {
 
 field.addEventListener('click', onFieldClick);
 
+popupButton.addEventListener('click', () => {
+    hidePopup();
+    startGame();
+})
 
 function onFieldClick() {
+    if (!started) {
+      return;
+    }
     const target = event.target;
     if(target.matches('.bird')) {
         target.remove();
         score++;
         updateScore();
+        
     } 
     if( score === BIRD_COUNT ) {
         finishGame(true);
     }
 }
 
+function initGame() {
+    score = 0;
+    field.textContent = '';
+    gameBullet.textContent = '';
+    addItem("bird", "img/bird.png", BIRD_COUNT);
+    addBullet("bullet", "img/bullet.png", BULLET_COUNT);
+
+}
+
 function finishGame(win) {
     started = false;
     showPopupWithText(win ? 'YOU WIN!!!' : 'YOU LOSE...');
     hideStopButton();
-}
-
-function initGame() {
-    addItem("bird", "img/bird.png", BIRD_COUNT);
-    addBullet("bullet", "img/bullet.png", BULLET_COUNT);
+    clearInterval(timer);
 }
 
 function startGame() {
@@ -78,16 +85,19 @@ function startGame() {
     showScoreAndTimer();
     showStopButton();
     startTimer();
+    
 }
 
 function stopGame() {
     started= false;
     showPopupWithText('Retry?');
     hideStopButton();
+    clearInterval(timer);
 }
 
 function startTimer() {
-    let remainSec = GAME_SEC; //전역변수를 왜 지역변수에 할당해서 사용하는지?
+    let remainSec = GAME_SEC; //전역변수를 왜 지역변수에 할당해서 사용해야할까?
+    updateTimer(remainSec);
     timer = setInterval(() => {
         if(remainSec <= 0) {
             clearInterval(timer);
@@ -103,6 +113,10 @@ function updateTimer(time) {
     const minutes = Math.floor(time / 60)
     const seconds = time % 60;
     gameTimer.innerHTML = `${minutes}:${seconds}`;
+}
+
+function hidePopup() {
+    popup.classList.add('popup--hide');
 }
 
 function showStopButton() {
@@ -123,7 +137,11 @@ function showScoreAndTimer() {
 
 function showPopupWithText(text) {
     popup.classList.remove('popup--hide');
-    popupMessage.innerHTML = text;
+    popupMessage.textContent = text;
+}
+
+function updateScore() {
+  gameScore.innerHTML = BIRD_COUNT - score;
 }
 
 
