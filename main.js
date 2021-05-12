@@ -19,11 +19,12 @@ const popupMessage = document.querySelector('.popup__message');
 
 const bgSound = new Audio('sound/bg.mp3')
 // bgSound.play();
+const gunSound = new Audio('sound/shotgun.mp3');
 
 const BIRD_COUNT = 5;
 const BULLET_COUNT = 3;
 const BIRD_SIZE = 80;
-const GAME_SEC = 5;
+const GAME_SEC = 15;
 
 let timer = undefined;
 let bullets = [];
@@ -50,6 +51,7 @@ function onFieldClick() {
     if (!started) {
       return;
     }
+    gunSound.play();
     const target = event.target;
     if(target.matches('.bird')) {
         target.remove();
@@ -68,7 +70,6 @@ function initGame() {
     gameBullet.textContent = '';
     addItem("bird", "img/bird.png", BIRD_COUNT);
     addBullet("bullet", "img/bullet.png", BULLET_COUNT);
-
 }
 
 function finishGame(win) {
@@ -106,7 +107,6 @@ function startTimer() {
         }
         updateTimer(--remainSec);
     }, 1000)
-
 }
 
 function updateTimer(time) {
@@ -185,10 +185,11 @@ function addBullet(className, imgPath, count) {
         bullets.push(bulletObj);
 
     }
-    // gameContainer.addEventListener('click', () => {
-    //     // let pop = bullets.pop();
-    //     // bullets.removeChild(pop);
-    // })
+    gameContainer.addEventListener('click', () => {
+        console.log('click')
+        // let pop = bullets.pop();
+        // bullets.removeChild(pop);
+    })
 
    
 }
