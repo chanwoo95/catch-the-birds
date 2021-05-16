@@ -1,6 +1,6 @@
 'use strict';
 
-import Sound from './src/sound.js';
+import * as sound from './sound.js'
 
 const horizontal = document.querySelector('.horizontal');
 const vertical = document.querySelector('.vertical');
@@ -9,7 +9,7 @@ const target = document.querySelector('.target');
 const field = document.querySelector('.game__field');
 const fieldRect = field.getBoundingClientRect();
 
-const gameContainer = document.querySelector('.container');
+// const gameContainer = document.querySelector('.container');
 const gameButton = document.querySelector('.game__button');
 const gameScore = document.querySelector('.game__score');
 const gameTimer = document.querySelector('.game__time');
@@ -19,9 +19,7 @@ const popup = document.querySelector('.popup');
 const popupButton = document.querySelector('.popup__button');
 const popupMessage = document.querySelector('.popup__message');
 
-const bgSound = new Audio('sound/bg.mp3');
-// bgSound.play();
-const gunSound = new Audio('sound/shotgun.mp3');
+
 
 const BIRD_COUNT = 5;
 const BULLET_COUNT = 5;
@@ -88,6 +86,7 @@ function startGame() {
     showScoreAndTimer();
     showStopButton();
     startTimer();
+    sound.backgroundSound(); //ddd
     
 }
 
