@@ -1,4 +1,5 @@
 
+let started = false;
 
 class Game {
     constructor() {
@@ -6,11 +7,18 @@ class Game {
         this.gameScore = document.querySelector('.game__score');
         this.gameTimer = document.querySelector(".game__time");
         this.gameBullet = document.querySelector(".game__bullet");
-        this.gameButton.addEventListener('click', onFieldClick)
+        this.gameButton.addEventListener('click', () => {
+            if(!started) {
+                start();
+            } else {
+                stop();
+            }
+        })
     }
 
-    onFieldClick(onClick) {
-        this.onClick = onClick;
-    }
+    
+
+   
+
 
 }
