@@ -4,7 +4,7 @@ export default class Field {
     constructor() {
         this.field = document.querySelector('.game__field');
         this.fieldRect = field.getBoundingClientRect();
-        this.field.addEventListener()
+        this.field.addEventListener('click', this.onItemClick);
     }
 
     setClickListener(onItemClick) {
@@ -24,6 +24,12 @@ export default class Field {
         if(this.score === this.BIRD_COUNT) {
             this.finish();
         }
+    }
+
+    init() {
+        this.score = 0;
+        this.field.textContent = '';
+        this._addItem("bird", "img/bird.png", BIRD_COUNT);
     }
 
     _addItem(className, imgPath, count) {

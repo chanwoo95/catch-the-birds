@@ -87,7 +87,6 @@ function startGame() {
     showStopButton();
     startTimer();
     sound.backgroundSound(); //ddd
-    
 }
 
 function stopGame() {
@@ -110,11 +109,6 @@ function startTimer() {
     }, 1000)
 }
 
-function updateTimer(time) {
-    const minutes = Math.floor(time / 60)
-    const seconds = time % 60;
-    gameTimer.innerHTML = `${minutes}:${seconds}`;
-}
 
 function hidePopup() {
     popup.classList.add('popup--hide');
@@ -146,53 +140,30 @@ function updateScore() {
 }
 
 
-function addItem(className, imgPath, count) {
-    const x1 = 0;
-    const y1 = 0;
 
-    const x2 = fieldRect.width - BIRD_SIZE;
-    const y2 = fieldRect.height - BIRD_SIZE;
 
-    for(let i = 0; i < count; i++) {
-        const item = document.createElement('img');
-        item.setAttribute('class', className);
-        item.setAttribute('src', imgPath);
-
-        const x = randomNum(x1, x2);
-        const y = randomNum(y1, y2);
-
-        item.style.position = 'absolute';
-        item.style.left = `${x}px`;
-        item.style.top = `${y}px`;
-
-        field.appendChild(item);
-    }
-}
-
-function addBullet(className, imgPath, count) {
-    for(let i = 0 ; i < count; i++) {
-        const span = document.createElement('span');
-        const bullet = document.createElement('img');
-        bullet.setAttribute('class', className);
-        bullet.setAttribute('src', imgPath);
+// function addBullet(className, imgPath, count) {
+//     for(let i = 0 ; i < count; i++) {
+//         const span = document.createElement('span');
+//         const bullet = document.createElement('img');
+//         bullet.setAttribute('class', className);
+//         bullet.setAttribute('src', imgPath);
         
-        const newId = bullets.length + 1;
-        bullet.id = newId;
-        span.appendChild(bullet);
-        gameBullet.appendChild(span);
-        const bulletObj = {
-            id: newId
-        }
-        bullets.push(bulletObj);    
-    }
+//         const newId = bullets.length + 1;
+//         bullet.id = newId;
+//         span.appendChild(bullet);
+//         gameBullet.appendChild(span);
+//         const bulletObj = {
+//             id: newId
+//         }
+//         bullets.push(bulletObj);    
+//     }
     
-}
+// }
 
 
 
-function randomNum(min, max) {
-    return Math.random() * (max - min) + min;
-}
+
 
 document.addEventListener("mousemove", (event) => {
   mouseTarget(event);
