@@ -20,7 +20,7 @@ class Game {
 
         start() {
             this.started = true;
-            this.initGame();
+            this.init();
             this.updateScore();
             this.showScoreAndTimer();
             this.showStopButton();
@@ -30,6 +30,13 @@ class Game {
         stop() {
             this.started = false;
             this.showPopupWithText('Retry?');
+            this.hideStopButton();
+            clearInterval(timer);
+        }
+
+        finish(win) {
+            this.started = false;
+            this.showPopupWithText(win ? 'YOU WIN!!!' : 'YOU LOSE...');
             this.hideStopButton();
             clearInterval(timer);
         }
@@ -52,6 +59,26 @@ class Game {
             const seconds = time % 60;
             this.gameTimer.innerHTML = `${minutes}:${seconds}`;
         }
+
+        updateScore() {
+            this.gameScore.innerHTML = BIRD_COUNT - this.score;
+        }
+
+        showStopButton() {
+            const icon = document.querySelector('.fas');
+            icon.classList.remove('fa-play');
+            icon.classList.add('fa-stop');
+        }
+
+        hideStopButton() {
+            this.gameButton.style.visibility = 'hidden';
+        }
+
+        showScoreAndTimer() {
+            this.gameScore.style.visibility = 'visible';
+            this.gameTimer.style.visiblity = 'visible';
+        }
+
     }
 
 
