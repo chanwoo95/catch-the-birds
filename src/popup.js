@@ -3,18 +3,22 @@ class Popup {
         this.popup = document.querySelector('.popup');
         this.popupButton = docuemnt.querySelector('.popup__button');
         this.popupMessage = document.querySelector('.popup__message');
-        popupButton.addEventListener('click', () => {
-            hidePopup();
-            start();
-        })
+        this.popupButton.addEventListener('click', () => {
+            this.onClick && this.onClick();
+            hide();
+        });
+    }
+
+        setClickListener(onClick) {
+            this.onClick = onClick;
+        }
         
-        hidePopup() {
+        hide() {
             this.popup.classList.add('popup--hide');
         }
         
-        showPopupWithText(text) {
+        showWithText(text) {
             this.popup.classList.remove('popup--hide');
             this.popupMessage.textContent = text;
         }
-    }
 }

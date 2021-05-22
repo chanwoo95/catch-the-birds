@@ -3,7 +3,7 @@ const GAME_SEC = 30;
 
 let started = false;
 
-class Game {
+export default class Game {
     constructor() {
         this.gameButton = document.querySelector('.game__button');
         this.gameScore = document.querySelector('.game__score');

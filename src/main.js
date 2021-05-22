@@ -1,15 +1,20 @@
 'use strict';
 
 import * as sound from './sound.js'
+import Game from './game.js';
+import Field from './field.js';
 
-const horizontal = document.querySelector('.horizontal');
-const vertical = document.querySelector('.vertical');
-const target = document.querySelector('.target');
+// const horizontal = document.querySelector('.horizontal');
+// const vertical = document.querySelector('.vertical');
+// const target = document.querySelector('.target');
+
+// let bullets = [];
 
 
-
-let bullets = [];
-
+const gameFinishBanner = new Popup();
+gameFinishBanner.setClickListener( () => {
+    start();
+})
 
 
 
