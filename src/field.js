@@ -2,7 +2,8 @@ const BIRD_COUNT = 5;
 const BIRD_SIZE = 80;
 
 export default class Field {
-  constructor() {
+  constructor(birdCount) {
+    this.birdCount = birdCount;
     this.field = document.querySelector(".game__field");
     this.fieldRect = field.getBoundingClientRect();
     this.field.addEventListener("click", this.onItemClick);
@@ -13,13 +14,14 @@ export default class Field {
   }
 
   onItemClick() {
-    if (!started) {
-      return;
-    }
+      if (!started) {
+        return;
+      }
 
     this.target = event.target;
     if (this.target.matches(".bird")) {
       this.target.remove();
+      this.onItemClick && this.onItemClick('bird');
     }
     if (this.score === this.BIRD_COUNT) {
       this.finish();

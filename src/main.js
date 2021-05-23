@@ -16,7 +16,8 @@ gameFinishBanner.setClickListener( () => {
     start();
 })
 
-
+const gameField = new Field(10);
+gameField.setClickListener(onItemClick);
 
 
 

@@ -18,6 +18,8 @@ export default class Game {
         })
     }
 
+        
+
         start() {
             this.started = true;
             this.init();
