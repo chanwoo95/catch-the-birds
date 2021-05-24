@@ -4,7 +4,8 @@ const GAME_SEC = 30;
 let started = false;
 
 export default class Game {
-    constructor() {
+    constructor(birdCount) {
+        this.birdCount = birdCount;
         this.gameButton = document.querySelector('.game__button');
         this.gameScore = document.querySelector('.game__score');
         this.gameTimer = document.querySelector(".game__time");
@@ -18,6 +19,9 @@ export default class Game {
         })
     }
 
+    setGameStopListener(onGameStop) {
+        this.onGameStop = onGameStop;
+    }
         
 
         start() {
@@ -63,7 +67,7 @@ export default class Game {
         }
 
         updateScore() {
-            this.gameScore.innerHTML = BIRD_COUNT - this.score;
+            this.gameScore.innerHTML = this.birdCount - this.score;
         }
 
         showStopButton() {

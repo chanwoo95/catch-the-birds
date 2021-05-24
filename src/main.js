@@ -3,6 +3,7 @@
 import * as sound from './sound.js'
 import Game from './game.js';
 import Field from './field.js';
+import Popup from './popup.js';
 
 // const horizontal = document.querySelector('.horizontal');
 // const vertical = document.querySelector('.vertical');
@@ -16,11 +17,10 @@ gameFinishBanner.setClickListener( () => {
     start();
 })
 
-const gameField = new Field(10);
-gameField.setClickListener(onItemClick);
-
-
-
+const game = new Game();
+game.setGameStopListener(reason => {
+    console.log(reason);
+})
 
 
 

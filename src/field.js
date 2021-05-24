@@ -5,15 +5,15 @@ export default class Field {
   constructor(birdCount) {
     this.birdCount = birdCount;
     this.field = document.querySelector(".game__field");
-    this.fieldRect = field.getBoundingClientRect();
-    this.field.addEventListener("click", this.onItemClick);
+    this.fieldRect = this.field.getBoundingClientRect();
+    this.field.addEventListener("click", this.onClick);
   }
 
   setClickListener(onItemClick) {
     this.onItemClick = onItemClick;
   }
 
-  onItemClick() {
+  onClick() {
       if (!started) {
         return;
       }
@@ -32,7 +32,7 @@ export default class Field {
     this.score = 0;
     this.field.textContent = "";
     // this.gameBullet.textContent = '';
-    this._addItem("bird", "img/bird.png", BIRD_COUNT);
+    this._addItem("bird", "img/bird.png", this.birdCount);
     // this.addBullet("bullet", "img/bullet.png", BULLET_COUNT);
   }
 

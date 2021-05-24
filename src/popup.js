@@ -1,7 +1,7 @@
-class Popup {
+export default class Popup {
     constructor() {
         this.popup = document.querySelector('.popup');
-        this.popupButton = docuemnt.querySelector('.popup__button');
+        this.popupButton = document.querySelector('.popup__button');
         this.popupMessage = document.querySelector('.popup__message');
         this.popupButton.addEventListener('click', () => {
             this.onClick && this.onClick();
