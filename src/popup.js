@@ -1,3 +1,32 @@
+import Game from './game';
+
+export const Reason = Object.freeze({
+    win: 'win',
+    lose: 'lose',
+    retry: 'retry'
+})
+
+export class GameBuilder {
+    withGameDuration(duration) {
+        this.gameDuration = duration; 
+        return this;
+    }
+
+    withBirdCount(countNum) {
+        this.birdCount = countNum;
+        return this;
+    }
+
+    build() {
+        return new Game(
+            this.gameDuration,
+            this.birdCount,
+        )
+    }
+}
+
+    
+
 export default class Popup {
     constructor() {
         this.popup = document.querySelector('.popup');

@@ -19,7 +19,17 @@ gameFinishBanner.setClickListener( () => {
 
 const game = new Game();
 game.setGameStopListener(reason => {
-    console.log(reason);
+    switch(reason) {
+        case reason.win :
+            gameFinishBanner.showWithText('YOU WIN');
+        case reason.lose :
+            gameFinishBanner.showWithText('LOST...');
+        case reason.retry :
+            gameFinishBanner.showWithText('Retry?');
+        default :
+            new Error('error');
+    }
+    
 })
 
 
