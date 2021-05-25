@@ -1,8 +1,7 @@
 'use strict';
 
 import * as sound from './sound.js'
-import Game from './game.js';
-import Field from './field.js';
+import { Reason, GameBuilder} from './game.js';
 import Popup from './popup.js';
 
 // const horizontal = document.querySelector('.horizontal');
@@ -19,18 +18,23 @@ gameFinishBanner.setClickListener( () => {
 
 const game = new Game();
 game.setGameStopListener(reason => {
+    let message;
     switch(reason) {
-        case reason.win :
-            gameFinishBanner.showWithText('YOU WIN');
-        case reason.lose :
-            gameFinishBanner.showWithText('LOST...');
-        case reason.retry :
-            gameFinishBanner.showWithText('Retry?');
+        case Reason.win :
+            message = 'YOU WIN!!';
+            break;
+        case Reason.lose :
+            message = 'LOSE...';
+            break;
+        case Reason.cancle :
+            message = 'Retry?';
+            break;
         default :
-            new Error('error');
-    }
-    
-})
+            throw new Error('error');
+        }        
+        gameFinishBanner.showWithText(message);
+    })
+
 
 
 

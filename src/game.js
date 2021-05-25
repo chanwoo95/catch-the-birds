@@ -1,7 +1,31 @@
 
-const GAME_SEC = 30;
 
-let started = false;
+export const Reason = Object.freeze({
+  win: "win",
+  lose: "lose",
+  cancle: "cancle"
+});
+
+export const Itemtype = Object.freeze({
+    bird: 'bird'
+})
+
+export class GameBuilder {
+  withGameDuration(duration) {
+    this.gameDuration = duration;
+    return this;
+  }
+
+  withBirdCount(countNum) {
+    this.birdCount = countNum;
+    return this;
+  }
+
+  build() {
+    return new Game(this.gameDuration, this.birdCount);
+  }
+}
+
 
 export default class Game {
     constructor(birdCount) {
@@ -11,12 +35,16 @@ export default class Game {
         this.gameTimer = document.querySelector(".game__time");
         this.gameBullet = document.querySelector(".game__bullet");
         this.gameButton.addEventListener('click', () => {
-            if(!started) {
-                start();
+            if(this.started) {
+                stop(Reason.cancle);
             } else {
-                stop();
+                start();
             }
         })
+
+        this.started = false;
+        this.score = 0;
+        this.timer = undefined;
     }
 
     setGameStopListener(onGameStop) {
@@ -35,17 +63,21 @@ export default class Game {
 
         stop() {
             this.started = false;
-            this.showPopupWithText('Retry?');
+            this.showPopupWithText(Reason.cancle);
             this.hideStopButton();
             clearInterval(timer);
         }
 
-        finish(win) {
-            this.started = false;
-            this.showPopupWithText(win ? 'YOU WIN!!!' : 'YOU LOSE...');
-            this.hideStopButton();
-            clearInterval(timer);
+       onItemClick = item => {
+        if(item === Itemtype.bird) {
+            this.score++;
+            this.updateScore();
+            
+            if(this.score === this.birdCount) {
+                this.stop(Reason.win);
+            }
         }
+       }
 
         startTimer() {
             let remainSec = GAME_SEC;
