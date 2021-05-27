@@ -1,4 +1,5 @@
-const BIRD_COUNT = 5;
+import { Itemtype } from './game.js';
+
 const BIRD_SIZE = 80;
 
 export default class Field {
@@ -13,18 +14,12 @@ export default class Field {
     this.onItemClick = onItemClick;
   }
 
-  onClick() {
-      if (!started) {
-        return;
-      }
+  onClick = (event) => {
+    const target = event.target;
 
-    this.target = event.target;
-    if (this.target.matches(".bird")) {
-      this.target.remove();
-      this.onItemClick && this.onItemClick('bird');
-    }
-    if (this.score === this.BIRD_COUNT) {
-      this.finish();
+    if (target.matches(".bird")) {
+      target.remove();
+      this.onItemClick && this.onItemClick(Itemtype.bird);
     }
   }
 
@@ -32,7 +27,7 @@ export default class Field {
     this.score = 0;
     this.field.textContent = "";
     // this.gameBullet.textContent = '';
-    this._addItem("bird", "img/bird.png", this.birdCount);
+    this._addItem("bird", "/img/bird.png", this.birdCount);
     // this.addBullet("bullet", "img/bullet.png", BULLET_COUNT);
   }
 

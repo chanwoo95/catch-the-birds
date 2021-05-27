@@ -16,7 +16,11 @@ gameFinishBanner.setClickListener( () => {
     start();
 })
 
-const game = new Game();
+const game = new GameBuilder()//
+    .withGameDuration(15)
+    .withBirdCount(5)
+    .build()
+
 game.setGameStopListener(reason => {
     let message;
     switch(reason) {
@@ -33,6 +37,10 @@ game.setGameStopListener(reason => {
             throw new Error('error');
         }        
         gameFinishBanner.showWithText(message);
+    });
+
+    gameFinishBanner.setClickListener(() => {
+        game.start();
     })
 
 
