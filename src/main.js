@@ -1,6 +1,6 @@
 'use strict';
 
-import * as sound from './sound.js'
+// import * as sound from './sound.js'
 import { Reason, GameBuilder} from './game.js';
 import Popup from './popup.js';
 
@@ -12,9 +12,6 @@ import Popup from './popup.js';
 
 
 const gameFinishBanner = new Popup();
-gameFinishBanner.setClickListener( () => {
-    start();
-})
 
 const game = new GameBuilder()//
     .withGameDuration(15)

@@ -1,4 +1,4 @@
-import Field from './field';
+import Field from './field.js';
 
 
 export const Reason = Object.freeze({
@@ -7,7 +7,7 @@ export const Reason = Object.freeze({
   cancle: "cancle"
 });
 
-export const Itemtype = Object.freeze({
+export const ItemType = Object.freeze({
     bird: 'bird'
 })
 
@@ -28,7 +28,7 @@ export class GameBuilder {
 }
 
 
-export default class Game {
+class Game {
   constructor(birdCount) {
     this.birdCount = birdCount;
     this.gameButton = document.querySelector(".game__button");
@@ -37,9 +37,9 @@ export default class Game {
     this.gameBullet = document.querySelector(".game__bullet");
     this.gameButton.addEventListener("click", () => {
       if (this.started) {
-        stop(Reason.cancle);
+        this.stop(Reason.cancle);
       } else {
-        start();
+        this.start();
       }
     });
 
@@ -64,9 +64,9 @@ export default class Game {
     this.startTimer();
   }
 
-  stop() {
+  stop(reason) {
     this.started = false;
-    this.showPopupWithText(Reason.cancle);
+    this.stopGameTimer();
     this.hideStopButton();
     this.onGameStop && this.onGameStop(reason);
   }
@@ -78,7 +78,7 @@ export default class Game {
   }
 
   onItemClick = (item) => {
-    if (item === Itemtype.bird) {
+    if (item === ItemType.bird) {
       this.score++;
       this.updateScore();
 
@@ -89,12 +89,12 @@ export default class Game {
   };
 
   startTimer() {
-    let remainSec = GAME_SEC;
+    let remainSec = this.gameDuration;
     this.updateTimer(remainSec);
     this.timer = setInterval(() => {
       if (remainSec <= 0) {
-        clearInterval(timer);
-        this.finish(false);
+        clearInterval(this.timer);
+        this.stop(Reason.lose);
         return;
       }
       this.updateTimer(--remainSec);
@@ -105,6 +105,10 @@ export default class Game {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     this.gameTimer.innerHTML = `${minutes}:${seconds}`;
+  }
+
+  stopGameTimer() {
+    clearInterval(this.timer);
   }
 
   updateScore() {

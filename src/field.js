@@ -1,4 +1,4 @@
-import { Itemtype } from './game.js';
+import { ItemType } from './game.js';
 
 const BIRD_SIZE = 80;
 
@@ -19,7 +19,7 @@ export default class Field {
 
     if (target.matches(".bird")) {
       target.remove();
-      this.onItemClick && this.onItemClick(Itemtype.bird);
+      this.onItemClick && this.onItemClick(ItemType.bird);
     }
   }
 
@@ -35,8 +35,8 @@ export default class Field {
     const x1 = 0;
     const y1 = 0;
 
-    const x2 = fieldRect.width - BIRD_SIZE;
-    const y2 = fieldRect.height - BIRD_SIZE;
+    const x2 = this.fieldRect.width - BIRD_SIZE;
+    const y2 = this.fieldRect.height - BIRD_SIZE;
 
     for (let i = 0; i < count; i++) {
       const item = document.createElement("img");

@@ -1,16 +1,13 @@
-import Game from './game';
 
 
-    
-
-export class Popup {
+export default class Popup {
     constructor() {
         this.popup = document.querySelector('.popup');
         this.popupButton = document.querySelector('.popup__button');
         this.popupMessage = document.querySelector('.popup__message');
         this.popupButton.addEventListener('click', () => {
             this.onClick && this.onClick();
-            hide();
+            this.hide();
         });
     }
 
