@@ -1,4 +1,5 @@
 import Field from './field.js';
+import * as sound from './sound.js';
 
 
 export const Reason = Object.freeze({
@@ -29,7 +30,8 @@ export class GameBuilder {
 
 
 class Game {
-  constructor(birdCount) {
+  constructor(gameDuration, birdCount) {
+    this.gameDuration = gameDuration;
     this.birdCount = birdCount;
     this.gameButton = document.querySelector(".game__button");
     this.gameScore = document.querySelector(".game__score");
@@ -127,7 +129,7 @@ class Game {
 
   showScoreAndTimer() {
     this.gameScore.style.visibility = "visible";
-    this.gameTimer.style.visiblity = "visible";
+    this.gameTimer.style.visibility = "visible";
   }
 }
 

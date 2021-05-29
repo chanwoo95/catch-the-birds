@@ -1,8 +1,8 @@
 'use strict';
 
-// import * as sound from './sound.js'
 import { Reason, GameBuilder} from './game.js';
 import Popup from './popup.js';
+import * as sound from './sound.js'
 
 // const horizontal = document.querySelector('.horizontal');
 // const vertical = document.querySelector('.vertical');
@@ -23,6 +23,7 @@ game.setGameStopListener(reason => {
     switch(reason) {
         case Reason.win :
             message = 'YOU WIN!!';
+            sound.
             break;
         case Reason.lose :
             message = 'LOSE...';
