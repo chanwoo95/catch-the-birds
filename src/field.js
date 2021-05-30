@@ -1,4 +1,5 @@
 import { ItemType } from './game.js';
+import * as sound from './sound.js';
 
 const BIRD_SIZE = 80;
 
@@ -16,6 +17,7 @@ export default class Field {
 
   onClick = (event) => {
     const target = event.target;
+    // sound.gunshotSound();
 
     if (target.matches(".bird")) {
       target.remove();
@@ -27,7 +29,7 @@ export default class Field {
     this.score = 0;
     this.field.textContent = "";
     // this.gameBullet.textContent = '';
-    this._addItem("bird", "/img/bird.png", this.birdCount);
+    this._addItem("bird", "/img/bird2.png", this.birdCount);
     // this.addBullet("bullet", "img/bullet.png", BULLET_COUNT);
   }
 

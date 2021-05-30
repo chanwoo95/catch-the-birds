@@ -64,6 +64,7 @@ class Game {
     this.showScoreAndTimer();
     this.showStopButton();
     this.startTimer();
+    sound.backgroundSound();
   }
 
   stop(reason) {
