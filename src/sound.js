@@ -1,10 +1,11 @@
-const bgSound = new Audio('./sound/bg.mp3');
-const gunSound = new Audio('./sound/shotgun.mp3');
+const bgSound = new Audio('./sound/background.mp3');
 const winSound = new Audio('./sound/win.mp3');
 const alert = new Audio('./sound/alert.wav');
+const popup = new Audio('./sound/popup.mp3');
 
 export function backgroundSound() {
     playSound(bgSound);
+    bgSound.loop = true;
 }
 
 export function gunshotSound() {
@@ -17,6 +18,10 @@ export function winnerSound() {
 
 export function alertSound() {
     playSound(alert);
+}
+
+export function popupSound() {
+    playSound(popup);
 }
 
 export function stopBackGroundSound() {

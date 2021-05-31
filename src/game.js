@@ -65,6 +65,7 @@ class Game {
     this.showStopButton();
     this.startTimer();
     sound.backgroundSound();
+    this.gameField.myMove();
   }
 
   stop(reason) {

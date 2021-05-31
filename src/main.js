@@ -14,7 +14,7 @@ const target = document.querySelector('.target');
 const gameFinishBanner = new Popup();
 
 const game = new GameBuilder()//
-    .withGameDuration(10)
+    .withGameDuration(3)
     .withBirdCount(5)
     .build()
 
@@ -27,7 +27,7 @@ game.setGameStopListener(reason => {
             break;
         case Reason.lose :
             message = 'LOSE...';
-            sound.alertSound();
+            sound.popupSound();
             sound.stopBackGroundSound();
             break;
         case Reason.cancle :
