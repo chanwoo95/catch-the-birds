@@ -31,8 +31,8 @@ export default class Field {
     this.score = 0;
     this.field.textContent = "";
     // this.gameBullet.textContent = '';
-    this._addItem("bird", "/img/bird2.png", this.birdCount);
-    // this.addBullet("bullet", "img/bullet.png", BULLET_COUNT);
+    this._addItem("bird", "/img/crystal.png", this.birdCount);
+    this._addItem("bat", "img/bat.png", this.batCount);
   }
 
   _addItem(className, imgPath, count) {
