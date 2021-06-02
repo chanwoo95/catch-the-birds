@@ -9,7 +9,8 @@ export const Reason = Object.freeze({
 });
 
 export const ItemType = Object.freeze({
-    bird: 'bird'
+    crystal: 'crystal',
+    bat: 'bat'
 })
 
 export class GameBuilder {
@@ -18,21 +19,27 @@ export class GameBuilder {
     return this;
   }
 
-  withBirdCount(countNum) {
-    this.birdCount = countNum;
+  withCrystalCount(countNum) {
+    this.crystalCount = countNum;
+    return this;
+  }
+
+  withBatCount(countNum) {
+    this.batCount = countNum;
     return this;
   }
 
   build() {
-    return new Game(this.gameDuration, this.birdCount);
+    return new Game(this.gameDuration, this.crystalCount, this.batCount);
   }
 }
 
 
 class Game {
-  constructor(gameDuration, birdCount) {
+  constructor(gameDuration, crystalCount, batCount) {
     this.gameDuration = gameDuration;
-    this.birdCount = birdCount;
+    this.crystalCount = crystalCount;
+    this.batCount = batCount;
     this.gameButton = document.querySelector(".game__button");
     this.gameScore = document.querySelector(".game__score");
     this.gameTimer = document.querySelector(".game__time");
@@ -45,7 +52,7 @@ class Game {
       }
     });
 
-    this.gameField = new Field(birdCount);
+    this.gameField = new Field(crystalCount, batCount);
     this.gameField.setClickListener(this.onItemClick);
 
     this.started = false;
@@ -65,7 +72,6 @@ class Game {
     this.showStopButton();
     this.startTimer();
     sound.backgroundSound();
-    this.gameField.myMove();
   }
 
   stop(reason) {
@@ -82,13 +88,16 @@ class Game {
   }
 
   onItemClick = (item) => {
-    if (item === ItemType.bird) {
+    if (item === ItemType.crystal) {
       this.score++;
       this.updateScore();
 
-      if (this.score === this.birdCount) {
+      if (this.score === this.crystalCount) {
         this.stop(Reason.win);
       }
+    }
+    else if( item === ItemType.bat) {
+      this.stop(Reason.lose);
     }
   };
 
@@ -116,7 +125,7 @@ class Game {
   }
 
   updateScore() {
-    this.gameScore.innerHTML = this.birdCount - this.score;
+    this.gameScore.innerHTML = this.crystalCount - this.score;
   }
 
   showStopButton() {
