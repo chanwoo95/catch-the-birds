@@ -1,9 +1,6 @@
 body {
   margin: 0;
   box-sizing: border-box;
-  background-color: black;
-  display: flex;
-  justify-content: center;
   overflow: hidden;
 }
 
@@ -18,9 +15,23 @@ button {
   z-index: -1;
 }
 
+.top__divide {
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.top__menu {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.top__info {
+}
+
 .crystal {
-  width: 60px;
-  height: 60px;
+  height: 35px;
   transition: all 0.2s;
 }
 
@@ -39,7 +50,6 @@ button {
 }
 
 .game__menu {
-  margin-top: 20px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -98,7 +108,7 @@ button {
   justify-content: center;
   flex-direction: column;
   border-radius: 10px;
-  top: 440px;
+  top: 300px;
   width: 800px;
   height: 400px;
   background-color: rgba(47, 53, 66, 0.7);
