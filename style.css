@@ -16,7 +16,7 @@ button {
 }
 
 .top__divide {
-  padding: 10px;
+  padding: 40px;
   display: flex;
   justify-content: space-around;
 }
@@ -28,21 +28,30 @@ button {
 }
 
 .top__info {
-  background-color: white;
+  font-weight: bold;
+  background-color: #ffeaa7;
   color: black;
+  border: 5px solid black;
+  border-radius: 20px;
   max-height: 40px;
-  padding: 0px 10px;
+  line-height: 40px;
+  padding: 0px 30px;
 }
 
 .top__stage {
-  background-color: white;
+  font-weight: bold;
+  background-color: #ffeaa7;
   color: black;
+  border: 5px solid black;
+  border-radius: 20px;
   max-height: 40px;
-  padding: 0px 10px;
+  line-height: 40px;
+  padding: 0px 30px;
 }
 
 .crystal {
-  height: 35px;
+  width: 80px;
+  height: 80px;
   transition: all 0.2s;
 }
 
@@ -51,8 +60,8 @@ button {
 }
 
 .bat {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   transition: all 0.2s;
 }
 
@@ -76,6 +85,10 @@ button {
   outline: none;
 }
 
+.game__button:hover {
+  transform: scale(1.12);
+}
+
 .game__time {
   width: 80px;
   height: 10px;
@@ -94,32 +107,35 @@ button {
 
 .game__score {
   font-size: 40px;
+  font-weight: bold;
   width: 80px;
   height: 80px;
   line-height: 80px;
   border-radius: 50%;
-  background-color: #fab1a0;
+  border: 4px solid black;
+  background-color: #e17055;
   color: white;
   text-align: center;
   visibility: hidden;
+  margin-bottom: 100px;
 }
 
 .game__field {
   position: relative;
-  margin-top: 60px;
-  margin-left: 50px;
-  width: 1000px;
+  margin: auto;
+  width: 1500px;
   height: 350px;
 }
 
 .popup {
   position: absolute;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
+
+  margin: auto;
   border-radius: 10px;
-  top: 300px;
+  top: 400px;
+  left: 100px;
   width: 800px;
   height: 400px;
   background-color: rgba(47, 53, 66, 0.7);
