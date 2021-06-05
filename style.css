@@ -28,6 +28,17 @@ button {
 }
 
 .top__info {
+  background-color: white;
+  color: black;
+  max-height: 40px;
+  padding: 0px 10px;
+}
+
+.top__stage {
+  background-color: white;
+  color: black;
+  max-height: 40px;
+  padding: 0px 10px;
 }
 
 .crystal {
