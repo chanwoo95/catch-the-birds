@@ -8,7 +8,7 @@ import * as sound from './sound.js'
 const gameFinishBanner = new Popup();
 
 const game = new GameBuilder()//
-    .withGameDuration(1)
+    .withGameDuration(10)
     .withCrystalCount(5)
     .withBatCount(5)
     .build()
@@ -17,7 +17,7 @@ game.setGameStopListener(reason => {
     let message;
     switch(reason) {
         case Reason.win :
-            message = 'YOU WIN!!';
+            message = 'YOU WIN!!🤩';
             sound.winnerSound();
             break;
         case Reason.lose :
