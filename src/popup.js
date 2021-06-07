@@ -2,6 +2,7 @@
 
 export default class Popup {
     constructor() {
+        this.info = document.querySelector('.top__info');
         this.popup = document.querySelector('.popup');
         this.popupButton = document.querySelector('.popup__button');
         this.popupMessage = document.querySelector('.popup__message');
