@@ -44,6 +44,7 @@ class Game {
     this.gameScore = document.querySelector(".game__score");
     this.gameTimer = document.querySelector(".game__time");
     this.gameBullet = document.querySelector(".game__bullet");
+    this.icon = document.querySelector(".fa-play");
     this.gameButton.addEventListener("click", () => {
       if (this.started) {
         this.stop(Reason.cancle);
@@ -108,10 +109,17 @@ class Game {
       if (remainSec <= 0) {
         clearInterval(this.timer);
         this.stop(Reason.lose);
+        sound.stopCountSound();
         return;
       }
       this.updateTimer(--remainSec);
+
+      if( remainSec<=5) {
+        sound.countSound();
+      }
     }, 1000);
+
+    
   }
 
   updateTimer(time) {
@@ -129,9 +137,8 @@ class Game {
   }
 
   showStopButton() {
-    const icon = document.querySelector(".fas");
-    icon.classList.remove("fa-play");
-    icon.classList.add("fa-stop");
+     this.icon.classList.remove("fa-play");
+     this.icon.classList.add("fa-stop");
   }
 
   hideStopButton() {
