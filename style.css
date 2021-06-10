@@ -60,6 +60,10 @@ h2 {
   z-index: 1;
 }
 
+.info-hide {
+  visibility:hidden;
+}
+
 .info__closeBtn {
   padding: 8px;
   font-size: 25px;

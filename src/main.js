@@ -2,10 +2,12 @@
 
 import { Reason, GameBuilder} from './game.js';
 import Popup from './popup.js';
+import Info from './info.js';
 import * as sound from './sound.js'
 
 
 const gameFinishBanner = new Popup();
+const gameInfo = new Info();
 
 const game = new GameBuilder()//
     .withGameDuration(10)
@@ -38,6 +40,11 @@ game.setGameStopListener(reason => {
     gameFinishBanner.setClickListener(() => {
         game.start();
     })
+
+    gameInfo.setClickListener(() => {
+        gameInfo.showAndHideInfo();
+    })
+
 
 
 
