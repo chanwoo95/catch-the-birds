@@ -3,6 +3,21 @@ const winSound = new Audio('./sound/win.mp3');
 const alert = new Audio('./sound/alert.wav');
 const popup = new Audio('./sound/popup.mp3');
 const countAlert = new Audio('./sound/count.mp3');
+const openMenu = new Audio('./sound/show_menu.mp3');
+const closeMenu = new Audio('./sound/close_menu.mp3');
+const clickSound = new Audio('./sound/crystal.mp3');
+
+export function crystalSound() {
+    playSound(clickSound);
+}
+
+export function showMenuSound() {
+    playSound(openMenu);
+}
+
+export function closeMenuSound() {
+    playSound(closeMenu);
+}
 
 export function countSound() {
     playSound(countAlert);
@@ -17,9 +32,6 @@ export function backgroundSound() {
     bgSound.loop = true;
 }
 
-export function gunshotSound() {
-    playSound(gunSound)
-}
 
 export function winnerSound() {
     playSound(winSound);

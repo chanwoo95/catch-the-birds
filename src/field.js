@@ -20,6 +20,7 @@ export default class Field {
     const target = event.target;
 
     if (target.matches(".crystal")) {
+      sound.crystalSound();
       target.remove();
       this.onItemClick && this.onItemClick(ItemType.crystal);
     }
