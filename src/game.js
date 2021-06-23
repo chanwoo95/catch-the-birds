@@ -44,6 +44,7 @@ class Game {
     this.gameScore = document.querySelector(".game__score");
     this.gameTimer = document.querySelector(".game__time");
     this.gameBullet = document.querySelector(".game__bullet");
+    this.gameLevel = document.querySelector(".top__stage");
     this.icon = document.querySelector(".fa-play");
     this.gameButton.addEventListener("click", () => {
       if (this.started) {
@@ -56,6 +57,8 @@ class Game {
     this.gameField = new Field(crystalCount, batCount);
     this.gameField.setClickListener(this.onItemClick);
 
+
+    this.level = 1;
     this.started = false;
     this.score = 0;
     this.timer = undefined;
@@ -64,6 +67,8 @@ class Game {
   setGameStopListener(onGameStop) {
     this.onGameStop = onGameStop;
   }
+
+
 
   start() {
     this.started = true;

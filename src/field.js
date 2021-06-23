@@ -1,7 +1,7 @@
 import { ItemType } from './game.js';
 import * as sound from './sound.js';
 
-const CRYSTAL_SIZE = 80;
+const CRYSTAL_SIZE = 140;
 
 export default class Field {
   constructor(crystalCount, batCount) {
