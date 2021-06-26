@@ -10,9 +10,9 @@ const gameFinishBanner = new Popup();
 const gameInfo = new Info();
 
 const game = new GameBuilder()//
-    .withGameDuration(10)
+    .withGameDuration(15)
     .withCrystalCount(5)
-    .withBatCount(5)
+    .withBatCount(7)
     .build()
 
 game.setGameStopListener(reason => {
