@@ -44,7 +44,6 @@ class Game {
     this.gameScore = document.querySelector(".game__score");
     this.gameTimer = document.querySelector(".game__time");
     this.gameBullet = document.querySelector(".game__bullet");
-    this.gameLevel = document.querySelector(".top__stage");
     this.icon = document.querySelector(".fa-play");
     this.gameButton.addEventListener("click", () => {
       if (this.started) {
@@ -86,6 +85,8 @@ class Game {
     this.hideStopButton();
     this.onGameStop && this.onGameStop(reason);
   }
+
+  
 
   initGame() {
     this.score = 0;
