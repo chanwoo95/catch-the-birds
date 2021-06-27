@@ -32,8 +32,8 @@ export default class Field {
   init() {
     this.score = 0;
     this.field.textContent = "";
-    this._addItem("crystal", "/img/crystal.png", this.crystalCount);
-    this._addItem("bat", "/img/bat.png", this.batCount);
+    this._addItem("crystal", "img/crystal.png", this.crystalCount);
+    this._addItem("bat", "img/bat.png", this.batCount);
   }
 
   _addItem(className, imgPath, count) {
